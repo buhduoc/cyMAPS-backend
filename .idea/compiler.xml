@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="ms-imagenes" />
+        <module name="ms-usuarios" />
+        <module name="ms-mapas" />
+        <module name="ms-personalizacion" />
+        <module name="ms-disponibilidad" />
+        <module name="ms-comentarios" />
+        <module name="ms-rutas" />
+        <module name="ms-historial" />
+        <module name="ms-comentarios (1)" />
+        <module name="ms-comunidad" />
+        <module name="ms-geolocalizacion" />
+      </profile>
+    </annotationProcessing>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="ms-comentarios" options="-parameters" />
+      <module name="ms-comentarios (1)" options="-parameters" />
+      <module name="ms-comunidad" options="-parameters" />
+      <module name="ms-disponibilidad" options="-parameters" />
+      <module name="ms-geolocalizacion" options="-parameters" />
+      <module name="ms-historial" options="-parameters" />
+      <module name="ms-imagenes" options="-parameters" />
+      <module name="ms-mapas" options="-parameters" />
+      <module name="ms-personalizacion" options="-parameters" />
+      <module name="ms-rutas" options="-parameters" />
+      <module name="ms-usuarios" options="-parameters" />
+    </option>
+  </component>
+</project>

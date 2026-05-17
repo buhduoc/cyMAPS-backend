@@ -1,0 +1,6 @@
+CREATE TABLE rutas (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(255) NOT NULL,
+    tipo VARCHAR(255) NOT NULL,
+    creador_id BIGINT NOT NULL
+);
