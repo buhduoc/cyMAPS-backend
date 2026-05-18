@@ -14,11 +14,13 @@
         <module name="ms-comentarios" />
         <module name="ms-rutas" />
         <module name="ms-historial" />
-        <module name="ms-comentarios (1)" />
         <module name="ms-comunidad" />
         <module name="ms-geolocalizacion" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="ms-comentarios (1)" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
