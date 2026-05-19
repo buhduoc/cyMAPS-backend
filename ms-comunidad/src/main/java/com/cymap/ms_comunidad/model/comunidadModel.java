@@ -19,5 +19,5 @@ public class comunidadModel {
     private String descripcion;
 
     @Column(nullable = false)
-    private Long creadorId;
+    private Long usuarioId;
 }

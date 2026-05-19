@@ -1,7 +1,7 @@
 package com.cymap.ms_usuarios.controller;
 
 import com.cymap.ms_usuarios.model.usuariosModel;
-import com.cymap.ms_usuarios.service.usuarioService; // Importamos el nuevo servicio
+import com.cymap.ms_usuarios.service.usuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -26,8 +26,12 @@ public class usuariosController {
     }
 
     @GetMapping("/{id}")
-    public usuariosModel obtenerPorId(@PathVariable Long id) {
-        return service.obtenerPorId(id);
+    public ResponseEntity<usuariosModel> obtenerPorId(@PathVariable Long id) {
+        usuariosModel usuario = service.obtenerPorId(id);
+        if (usuario != null) {
+            return ResponseEntity.ok(usuario);
+        }
+        return ResponseEntity.notFound().build();
     }
 
     @PutMapping("/{id}")

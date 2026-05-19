@@ -33,7 +33,7 @@ public class rutasService {
             rutasModel r = rutaExistente.get();
             r.setNombre(nuevasRutas.getNombre());
             r.setTipo(nuevasRutas.getTipo());
-            r.setCreadorId(nuevasRutas.getCreadorId());
+            r.setUsuarioId(nuevasRutas.getUsuarioId());
             return repo.save(r);
         }
         return null;

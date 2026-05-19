@@ -5,6 +5,7 @@ import com.cymap.ms_comunidad.service.comunidadService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import reactor.core.publisher.Mono;
 
 import java.util.List;
 
@@ -16,24 +17,31 @@ public class comunidadController {
     private comunidadService service;
 
     @PostMapping
-    public comunidadModel crear(@RequestBody comunidadModel c) {
-        return service.registrar(c);
+    public Mono<ResponseEntity<Object>> crear(@RequestBody comunidadModel c) {
+        return service.registrarReactivo(c)
+                .map(guardado -> ResponseEntity.ok((Object) guardado))
+                .onErrorResume(e -> Mono.just(
+                        ResponseEntity.badRequest().body((Object) e.getMessage())
+                ));
     }
 
     @GetMapping
-    public List<comunidadModel> listar() {
-        return service.listar();
+    public ResponseEntity<List<comunidadModel>> listar() {
+        return ResponseEntity.ok(service.listar());
     }
 
     @GetMapping("/{id}")
-    public comunidadModel buscarPorId(@PathVariable Long id) {
-        return service.obtenerPorId(id);
+    public ResponseEntity<comunidadModel> buscarPorId(@PathVariable Long id) {
+        comunidadModel encontrado = service.obtenerPorId(id);
+        if (encontrado != null) {
+            return ResponseEntity.ok(encontrado);
+        }
+        return ResponseEntity.notFound().build();
     }
 
-    // Endpoint para ver qué grupos maneja un usuario en concreto: /api/comunidad/creador/1
     @GetMapping("/creador/{creadorId}")
-    public List<comunidadModel> buscarPorCreadorId(@PathVariable Long creadorId) {
-        return service.obtenerPorCreadorId(creadorId);
+    public ResponseEntity<List<comunidadModel>> buscarPorCreadorId(@PathVariable Long creadorId) {
+        return ResponseEntity.ok(service.obtenerPorCreadorId(creadorId));
     }
 
     @PutMapping("/{id}")

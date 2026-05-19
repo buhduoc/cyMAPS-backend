@@ -5,6 +5,7 @@ import com.cymap.ms_imagenes.service.imagenesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import reactor.core.publisher.Mono;
 
 import java.util.List;
 
@@ -16,23 +17,31 @@ public class imagenesController {
     private imagenesService service;
 
     @PostMapping
-    public imagenesModel crear(@RequestBody imagenesModel i) {
-        return service.registrar(i);
+    public Mono<ResponseEntity<Object>> crear(@RequestBody imagenesModel i) {
+        return service.registrarReactivo(i)
+                .map(guardado -> ResponseEntity.ok((Object) guardado))
+                .onErrorResume(e -> Mono.just(
+                        ResponseEntity.badRequest().body((Object) e.getMessage())
+                ));
     }
 
     @GetMapping
-    public List<imagenesModel> listar() {
-        return service.listar();
+    public ResponseEntity<List<imagenesModel>> listar() {
+        return ResponseEntity.ok(service.listar());
     }
 
     @GetMapping("/{id}")
-    public imagenesModel buscarPorId(@PathVariable Long id) {
-        return service.obtenerPorId(id);
+    public ResponseEntity<imagenesModel> buscarPorId(@PathVariable Long id) {
+        imagenesModel encontrado = service.obtenerPorId(id);
+        if (encontrado != null) {
+            return ResponseEntity.ok(encontrado);
+        }
+        return ResponseEntity.notFound().build();
     }
 
     @GetMapping("/ruta/{rutaId}")
-    public List<imagenesModel> buscarPorRutaId(@PathVariable Long rutaId) {
-        return service.obtenerPorRutaId(rutaId);
+    public ResponseEntity<List<imagenesModel>> buscarPorRutaId(@PathVariable Long rutaId) {
+        return ResponseEntity.ok(service.obtenerPorRutaId(rutaId));
     }
 
     @PutMapping("/{id}")

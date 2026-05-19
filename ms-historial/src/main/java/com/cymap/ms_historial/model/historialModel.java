@@ -2,10 +2,9 @@ package com.cymap.ms_historial.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import java.time.LocalDate;
 
 @Entity
-@Table(name = "historiales")
+@Table(name = "historial")
 @Data
 public class historialModel {
 
@@ -20,7 +19,7 @@ public class historialModel {
     private Long rutaId;
 
     @Column(nullable = false)
-    private LocalDate fechaRealizada;
+    private String fechaRealizada;
 
     @Column(nullable = false)
     private int tiempoMinutos;

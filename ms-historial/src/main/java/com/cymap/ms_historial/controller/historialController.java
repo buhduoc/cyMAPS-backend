@@ -5,6 +5,7 @@ import com.cymap.ms_historial.service.historialService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import reactor.core.publisher.Mono;
 
 import java.util.List;
 
@@ -16,8 +17,12 @@ public class historialController {
     private historialService service;
 
     @PostMapping
-    public historialModel crear(@RequestBody historialModel h) {
-        return service.registrar(h);
+    public Mono<ResponseEntity<Object>> crear(@RequestBody historialModel h) {
+        return service.registrar(h)
+                .map(historialGuardado -> ResponseEntity.ok((Object) historialGuardado))
+                .onErrorResume(e -> Mono.just(
+                        ResponseEntity.badRequest().body((Object) e.getMessage())
+                ));
     }
 
     @GetMapping
@@ -26,8 +31,12 @@ public class historialController {
     }
 
     @GetMapping("/{id}")
-    public historialModel buscarPorId(@PathVariable Long id) {
-        return service.obtenerPorId(id);
+    public ResponseEntity<historialModel> buscarPorId(@PathVariable Long id) {
+        historialModel encontrado = service.obtenerPorId(id);
+        if (encontrado != null) {
+            return ResponseEntity.ok(encontrado);
+        }
+        return ResponseEntity.notFound().build();
     }
 
     @GetMapping("/usuario/{usuarioId}")

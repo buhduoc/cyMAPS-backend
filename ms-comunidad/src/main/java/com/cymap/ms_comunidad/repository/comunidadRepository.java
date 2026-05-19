@@ -8,8 +8,6 @@ import java.util.List;
 
 @Repository
 public interface comunidadRepository extends JpaRepository<comunidadModel, Long> {
-    /*
-     Permite buscar todos los grupos
-     */
-    List<comunidadModel> findByCreadorId(Long creadorId);
+
+    List<comunidadModel> findByUsuarioId(Long usuarioId);
 }

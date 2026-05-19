@@ -5,6 +5,7 @@ import com.cymap.ms_personalizacion.service.personalizacionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import reactor.core.publisher.Mono;
 
 import java.util.List;
 
@@ -16,18 +17,27 @@ public class personalizacionController {
     private personalizacionService service;
 
     @PostMapping
-    public personalizacionModel crear(@RequestBody personalizacionModel p) {
-        return service.registrar(p);
+    public Mono<ResponseEntity<Object>> crear(@RequestBody personalizacionModel p) {
+        return service.guardarPreferencias(p)
+                .map(guardado -> ResponseEntity.ok((Object) guardado))
+                .onErrorResume(e -> Mono.just(
+                        ResponseEntity.badRequest().body((Object) e.getMessage())
+                ));
     }
 
     @GetMapping
-    public List<personalizacionModel> listar() {
-        return service.listar();
+    public ResponseEntity<List<personalizacionModel>> listar() {
+        List<personalizacionModel> lista = service.listar();
+        return ResponseEntity.ok(lista);
     }
 
     @GetMapping("/{id}")
-    public personalizacionModel buscarPorId(@PathVariable Long id) {
-        return service.obtenerPorId(id);
+    public ResponseEntity<personalizacionModel> buscarPorId(@PathVariable Long id) {
+        personalizacionModel encontrado = service.obtenerPorId(id);
+        if (encontrado != null) {
+            return ResponseEntity.ok(encontrado);
+        }
+        return ResponseEntity.notFound().build();
     }
 
     @GetMapping("/usuario/{usuarioId}")

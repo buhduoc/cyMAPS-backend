@@ -5,6 +5,7 @@ import com.cymap.ms_geolocalizacion.service.geolocalizacionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import reactor.core.publisher.Mono;
 
 import java.util.List;
 
@@ -16,18 +17,26 @@ public class geolocalizacionController {
     private geolocalizacionService service;
 
     @PostMapping
-    public geolocalizacionModel crear(@RequestBody geolocalizacionModel g) {
-        return service.registrar(g);
+    public Mono<ResponseEntity<Object>> crear(@RequestBody geolocalizacionModel g) {
+        return service.registrarReactivo(g)
+                .map(guardado -> ResponseEntity.ok((Object) guardado))
+                .onErrorResume(e -> Mono.just(
+                        ResponseEntity.badRequest().body((Object) e.getMessage())
+                ));
     }
 
     @GetMapping
-    public List<geolocalizacionModel> listar() {
-        return service.listar();
+    public ResponseEntity<List<geolocalizacionModel>> listar() {
+        return ResponseEntity.ok(service.listar());
     }
 
     @GetMapping("/{id}")
-    public geolocalizacionModel buscarPorId(@PathVariable Long id) {
-        return service.obtenerPorId(id);
+    public ResponseEntity<geolocalizacionModel> buscarPorId(@PathVariable Long id) {
+        geolocalizacionModel encontrado = service.obtenerPorId(id);
+        if (encontrado != null) {
+            return ResponseEntity.ok(encontrado);
+        }
+        return ResponseEntity.notFound().build();
     }
 
     @GetMapping("/usuario/{usuarioId}")

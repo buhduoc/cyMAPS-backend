@@ -5,6 +5,7 @@ import com.cymap.ms_disponibilidad.service.disponibilidadService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import reactor.core.publisher.Mono;
 
 import java.util.List;
 
@@ -16,18 +17,26 @@ public class disponibilidadController {
     private disponibilidadService service;
 
     @PostMapping
-    public disponibilidadModel crear(@RequestBody disponibilidadModel d) {
-        return service.registrar(d);
+    public Mono<ResponseEntity<Object>> crear(@RequestBody disponibilidadModel d) {
+        return service.registrarReactivo(d)
+                .map(guardado -> ResponseEntity.ok((Object) guardado))
+                .onErrorResume(e -> Mono.just(
+                        ResponseEntity.badRequest().body((Object) e.getMessage())
+                ));
     }
 
     @GetMapping
-    public List<disponibilidadModel> listar() {
-        return service.listar();
+    public ResponseEntity<List<disponibilidadModel>> listar() {
+        return ResponseEntity.ok(service.listar());
     }
 
     @GetMapping("/{id}")
-    public disponibilidadModel buscarPorId(@PathVariable Long id) {
-        return service.obtenerPorId(id);
+    public ResponseEntity<disponibilidadModel> buscarPorId(@PathVariable Long id) {
+        disponibilidadModel encontrado = service.obtenerPorId(id);
+        if (encontrado != null) {
+            return ResponseEntity.ok(encontrado);
+        }
+        return ResponseEntity.notFound().build();
     }
 
     @GetMapping("/ruta/{rutaId}")

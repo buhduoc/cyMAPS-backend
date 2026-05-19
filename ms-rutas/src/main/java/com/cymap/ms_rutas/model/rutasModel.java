@@ -18,5 +18,5 @@ public class rutasModel {
     private String tipo;
 
     @Column(nullable = false)
-    private Long creadorId;
+    private Long usuarioId;
 }

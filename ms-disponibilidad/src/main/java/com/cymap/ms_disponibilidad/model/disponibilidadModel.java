@@ -23,5 +23,5 @@ public class disponibilidadModel {
     private String motivo;
 
     @Column(nullable = false)
-    private LocalDateTime ultimaActualizacion;
+    private String ultimaActualizacion;
 }
