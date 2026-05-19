@@ -14,3 +14,4 @@ Proyecto Fullstack 2026 - DUOC UC
 | ------------ | ------------ | --------- |
 | Version 1.0    | Funcional  | 18/05/2026
 
+## Diagrama de Clases
