@@ -20,6 +20,8 @@ Proyecto Fullstack 2026 - DUOC UC
 - Version 1.0
 Version base del programa, funcional con laragon, no funcional entre microservicios.
 
+--------------------------------------
+
 - Version 1.1
 Version 1.1 del programa, funcional con laragon, ahora funciona entre microservicios (esto fue probado en pc local),
 las conexiones son las siguientes:
