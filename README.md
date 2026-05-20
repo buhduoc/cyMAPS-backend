@@ -23,6 +23,7 @@ Version base del programa, funcional con laragon, no funcional entre microservic
 - Version 1.1
 Version 1.1 del programa, funcional con laragon, ahora funciona entre microservicios (esto fue probado en pc local),
 las conexiones son las siguientes:
+--------------------------------------
 | Microservicios | Funcional/NoFuncional |
 | ------------ | ------------ |
 | ms-usuario + ms-rutas + ms-comentarios | Funcional |
@@ -32,4 +33,5 @@ las conexiones son las siguientes:
 | ms-usuarios + ms-geolocalizaciones | Funcional |
 | ms-ruta + ms-disponibilidades | Funcional |
 | ms-usuarios + ms-comunidad  | Funcional |
+--------------------------------------
 **RECORDATORIO: ESTO FUE PROBADO EN UN PC LOCAL, ESTO PUEDE CONTENER ERRORES EN OTROS COMPUTADORES DE MOMENTO**
