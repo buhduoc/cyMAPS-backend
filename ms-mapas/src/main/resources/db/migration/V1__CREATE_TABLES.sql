@@ -1,6 +1,6 @@
 CREATE TABLE mapas (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
-    nombre_capa VARCHAR(255) NOT NULL,
+    nombreCapa VARCHAR(255) NOT NULL,
     proveedor VARCHAR(255) NOT NULL,
     activo TINYINT(1) NOT NULL
 );

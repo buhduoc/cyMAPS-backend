@@ -66,8 +66,8 @@ public class comunidadService {
         return repo.findById(id).orElse(null);
     }
 
-    public List<comunidadModel> obtenerPorCreadorId(Long creadorId) {
-        return repo.findByUsuarioId(creadorId);
+    public List<comunidadModel> obtenerPorUsuarioId(Long usuarioId) {
+        return repo.findByUsuarioId(usuarioId);
     }
 
     public comunidadModel actualizar(Long id, comunidadModel nuevosDatos) {

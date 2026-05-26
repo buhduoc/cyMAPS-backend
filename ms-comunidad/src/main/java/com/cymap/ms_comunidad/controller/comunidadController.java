@@ -39,9 +39,9 @@ public class comunidadController {
         return ResponseEntity.notFound().build();
     }
 
-    @GetMapping("/creador/{creadorId}")
-    public ResponseEntity<List<comunidadModel>> buscarPorCreadorId(@PathVariable Long creadorId) {
-        return ResponseEntity.ok(service.obtenerPorCreadorId(creadorId));
+    @GetMapping("/usuario/{usuarioId}")
+    public ResponseEntity<List<comunidadModel>> buscarPorCreadorId(@PathVariable Long usuarioId) {
+        return ResponseEntity.ok(service.obtenerPorUsuarioId(usuarioId));
     }
 
     @PutMapping("/{id}")
