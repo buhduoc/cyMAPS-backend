@@ -82,7 +82,7 @@ public class UsuariosControllerTest {
     }
 
     @Test
-    @DisplayName("GET /api/usuarios/{id} -> Retorna 404 si el ID no existe")
+    @DisplayName("GET http://localhost:8080/api/usuarios/{id} -> Retorna 404 si el ID no existe")
     public void obtenerPorId_CuandoNoExiste_DeberiaRetornar404() throws Exception {
 
         // 1. ARRANGE (Como vimos que tu servicio no usa Optional sino que devuelve null o lanza excepción)
