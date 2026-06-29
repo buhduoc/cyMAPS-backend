@@ -6,7 +6,6 @@ Proyecto Fullstack 2026 - DUOC UC
 
 * **Nicolas Oyarzo**
 * **Alexander Gutierrrez**
-* **Lucas Alarcon**
 
 ## Versiones
 
