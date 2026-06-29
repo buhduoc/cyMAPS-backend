@@ -1,4 +1,4 @@
-package com.cymap.ms_disponibilidad.service;
+package com.cymap.ms_comentarios.service;
 
 import java.util.Date;
 import java.util.List;
@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
-import com.cymap.ms_disponibilidad.DTO.LoginJWTDTO;
+import com.cymap.ms_comentarios.DTO.LoginJWTDTO;
 
 @Service
 public class AuthService {

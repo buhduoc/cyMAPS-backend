@@ -1,11 +1,11 @@
-package com.cymap.ms_disponibilidad.controller;
+package com.cymap.ms_geolocalizacion.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import com.cymap.ms_disponibilidad.DTO.LoginJWTDTO;
-import com.cymap.ms_disponibilidad.DTO.ResponseDTO;
-import com.cymap.ms_disponibilidad.service.AuthService;
+import com.cymap.ms_geolocalizacion.DTO.LoginJWTDTO;
+import com.cymap.ms_geolocalizacion.DTO.ResponseDTO;
+import com.cymap.ms_geolocalizacion.service.AuthService;
 
 @RestController
 @RequestMapping("/auth")

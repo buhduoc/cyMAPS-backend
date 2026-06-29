@@ -1,11 +1,11 @@
-package com.cymap.ms_disponibilidad.controller;
+package com.cymap.ms_comentarios.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import com.cymap.ms_disponibilidad.DTO.LoginJWTDTO;
-import com.cymap.ms_disponibilidad.DTO.ResponseDTO;
-import com.cymap.ms_disponibilidad.service.AuthService;
+import com.cymap.ms_comentarios.DTO.LoginJWTDTO;
+import com.cymap.ms_comentarios.DTO.ResponseDTO;
+import com.cymap.ms_comentarios.service.AuthService;
 
 @RestController
 @RequestMapping("/auth")

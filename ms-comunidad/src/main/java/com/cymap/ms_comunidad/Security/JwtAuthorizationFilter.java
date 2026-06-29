@@ -1,4 +1,4 @@
-package com.cymap.ms_disponibilidad.security;
+package com.cymap.ms_comunidad.Security;
 
 import java.io.IOException;
 import java.util.List;
